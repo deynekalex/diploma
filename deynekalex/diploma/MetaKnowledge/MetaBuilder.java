@@ -14,7 +14,9 @@ public class MetaBuilder {
             } else {
                 System.out.println("started " + folder + "/" + fileEntry.getName());
                 MetaExtracter metaExtracter = new MetaExtracter(folder + "/" + fileEntry.getName());
-                metaExtracter.extractMetaInfo();
+                if (!metaExtracter.extractMetaInfo()){
+                    System.out.println("fail............................");
+                }
                 System.out.println("finished " + folder + "/" + fileEntry.getName());
             }
         }
@@ -35,8 +37,24 @@ public class MetaBuilder {
         metaNormalizer.normolizeMetaInfo();
     }
 
+    public static void calcDistance(String folderPath){
+        File folder = new File(folderPath);
+        MetaDistanceCalculator metaCalculator = new MetaDistanceCalculator();
+        for (final File fileEntry : folder.listFiles()) {
+            if (fileEntry.getName().equals("README") || fileEntry.isDirectory()) {
+                continue;
+            } else {
+                System.out.println("started " + folder + "/" + fileEntry.getName());
+                metaCalculator.addNewMetaNormFile(folder + "/" + fileEntry.getName());
+                System.out.println("finished " + folder + "/" + fileEntry.getName());
+            }
+        }
+        metaCalculator.calcAllDistanceVectors();
+    }
+
     public static void main(String[] args) {
-        extractMetaInfo(args[0] + "_csv");
-        normalizeMetaInfo(args[0] + "_csv" + "metainfo");
+        //extractMetaInfo(args[0] + "_csv");
+        //normalizeMetaInfo(args[0] + "_csv" + "_metainfo");
+        calcDistance(args[0] + "_csv" + "_metainfo" + "_norm");
     }
 }

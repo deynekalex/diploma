@@ -23,6 +23,9 @@ public class MetaExtracter {
     private boolean initMetaFeatureSet(){
         metafeatures = new ArrayList<>();
         Instances instances = new MetaNumberOfInstances(curfile).getData();
+        if (instances.equals(null)){
+            return false;
+        }
         metafeatures.add(new MetaNumberOfInstances(instances));
         metafeatures.add(new MetaNumberOfAttributes(instances));
         metafeatures.add(new MetaDimensionality(instances));
@@ -39,7 +42,9 @@ public class MetaExtracter {
     }
 
     public boolean extractMetaInfo(){
-        initMetaFeatureSet();
+        if (!initMetaFeatureSet()){
+            return false;
+        }
         try {
             out = new PrintWriter(Utils.getResultFileName(curfile,"_metainfo", ".meta"));
         } catch (FileNotFoundException e) {

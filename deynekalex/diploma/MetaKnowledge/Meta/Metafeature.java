@@ -12,7 +12,7 @@ import java.util.Map;
 public abstract class Metafeature {
     public Map<Object, Double> metadata;
     public double avgMetadata;
-    Instances data;
+    Instances data = null;
     String filename;
 
     public Metafeature(String filename){
@@ -42,9 +42,9 @@ public abstract class Metafeature {
             loader.setSource(new File(filename));
             data = loader.getDataSet();
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 
