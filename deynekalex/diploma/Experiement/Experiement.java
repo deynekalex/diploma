@@ -74,8 +74,7 @@ public class Experiement {
 
     static void calculateBestVectors(){
         for(int i = 0; i < train.size(); i++){
-            //for each set
-            runMelif(train.get(i));
+
         }
     }
 
