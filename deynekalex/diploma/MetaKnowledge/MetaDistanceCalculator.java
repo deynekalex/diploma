@@ -48,7 +48,11 @@ public class MetaDistanceCalculator {
         }
         double sum = 0;
         for (int i = 0; i < first.size(); i++){
-            sum += Math.abs(first.get(i) - second.get(i));
+            if (Double.isNaN(first.get(i)) || Double.isNaN(second.get(i))){
+                sum += 0.5;
+            }else {
+                sum += Math.abs(first.get(i) - second.get(i));
+            }
         }
         return sum;
     }
