@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class CompatabilityChecker {
 
     public static boolean check(ArrayList<String> datasetFiles, ArrayList<String> metaFiles, ArrayList<String> melifFiles) {
-        //comparing datasetFiles with melifFiles
+        //comparing datasetFiles with metaFiles
         boolean isRight = true;
         for(String dataSetFileName : datasetFiles){
             boolean f = false;
@@ -57,7 +57,7 @@ public class CompatabilityChecker {
         /////////////////////////////////////////
         for(String melifFileName : melifFiles){
             boolean f = false;
-            melifFileName = melifFileName.substring(0,melifFileName.lastIndexOf('('));
+            melifFileName = melifFileName.substring(0,melifFileName.lastIndexOf('_'));
             for (String dataSetName : datasetFiles){
                 if (dataSetName.contains(melifFileName)){
                     f = true;

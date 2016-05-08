@@ -1,10 +1,7 @@
 package deynekalex.diploma.MelifResultsPreprocess;
 
-import deynekalex.diploma.Utils;
-
 import java.io.*;
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
 
 import static java.lang.Math.abs;
 
@@ -15,7 +12,7 @@ public class Preprocessor {
     public static String line = null;
     public static BufferedReader br;
     public static PrintWriter out;
-    static ArrayList<Point> allPoints = new ArrayList<>();
+    static ArrayList<PointExecution> allPointExecutions = new ArrayList<>();
     static final double step = 0.25;
 
     public static void preprocess(String inName, String outName) {
@@ -36,14 +33,14 @@ public class Preprocessor {
         }
         double bestValue = 0;
         ArrayList<ArrayList<Double>> bestPoints = new ArrayList<>();
-        for (Point curPoint : allPoints) {
-            if (curPoint.result == bestValue){
-                bestPoints.addAll(curPoint.points);
+        for (PointExecution curPointExecution : allPointExecutions) {
+            if (curPointExecution.result == bestValue){
+                bestPoints.addAll(curPointExecution.points);
             }
-            if (curPoint.result > bestValue) {
+            if (curPointExecution.result > bestValue) {
                 bestPoints.clear();
-                bestValue = curPoint.result;
-                bestPoints.addAll(curPoint.points);
+                bestValue = curPointExecution.result;
+                bestPoints.addAll(curPointExecution.points);
             }
         }
         out.println(bestValue);
@@ -59,8 +56,8 @@ public class Preprocessor {
     private static void writeOut(String outName) {
         try {
             out = new PrintWriter(outName);
-            for (Point curPoint : allPoints) {
-                writePointToOut(curPoint);
+            for (PointExecution curPointExecution : allPointExecutions) {
+                writePointToOut(curPointExecution);
                 out.println();
             }
             writeBestPoint();
@@ -72,40 +69,40 @@ public class Preprocessor {
 
     private static void writeBestPoint() {
         //TODO: Think about comparing quality of points
-        out.println("<---Global best Point--->");
+        out.println("<---Global best PointExecution--->");
         out.println();
         double bestValue = 0;
-        Point bestPoint = null;
-        for (Point curPoint : allPoints) {
-            if (curPoint.result > bestValue) {
-                bestValue = curPoint.result;
-                bestPoint = curPoint;
-            } else if (curPoint.result == bestValue) {
-                if (getDistance(curPoint.points.get(0), curPoint.startPoint)
-                        < getDistance(bestPoint.points.get(0), bestPoint.startPoint)) {
-                    bestValue = curPoint.result;
-                    bestPoint = curPoint;
+        PointExecution bestPointExecution = null;
+        for (PointExecution curPointExecution : allPointExecutions) {
+            if (curPointExecution.result > bestValue) {
+                bestValue = curPointExecution.result;
+                bestPointExecution = curPointExecution;
+            } else if (curPointExecution.result == bestValue) {
+                if (getDistance(curPointExecution.points.get(0), curPointExecution.startPoint)
+                        < getDistance(bestPointExecution.points.get(0), bestPointExecution.startPoint)) {
+                    bestValue = curPointExecution.result;
+                    bestPointExecution = curPointExecution;
                 }
             }
         }
-        writePointToOut(bestPoint);
+        writePointToOut(bestPointExecution);
     }
 
-    private static void writePointToOut(Point curPoint) {
+    private static void writePointToOut(PointExecution curPointExecution) {
         out.print("<Start point>");
         out.print(" [");
-        for (int j = 0; j < curPoint.startPoint.size() - 1; j++) {
-            out.print(curPoint.startPoint.get(j) + ", ");
+        for (int j = 0; j < curPointExecution.startPoint.size() - 1; j++) {
+            out.print(curPointExecution.startPoint.get(j) + ", ");
         }
-        out.print(curPoint.startPoint.get(curPoint.startPoint.size() - 1));
+        out.print(curPointExecution.startPoint.get(curPointExecution.startPoint.size() - 1));
         out.println("]");
 
-        out.println("<Best result from point>" + curPoint.result);
+        out.println("<Best result from point>" + curPointExecution.result);
         out.println("<Distance to point'(s)>");
         int i = 1;
-        for (ArrayList<Double> p : curPoint.points) {
+        for (ArrayList<Double> p : curPointExecution.points) {
             out.print("  <" + (i++) + ">");
-            out.print(getDistance(p, curPoint.startPoint));
+            out.print(getDistance(p, curPointExecution.startPoint));
             out.print(" [");
             for (int j = 0; j < p.size() - 1; j++) {
                 out.print(p.get(j) + ", ");
@@ -135,26 +132,26 @@ public class Preprocessor {
         br = new BufferedReader(new FileReader(inName));
         //reading results from points
         int pointSize;
-        while ((line = br.readLine()) != null || (line.contains("<---Global best Point--->"))) {
-            Point curPoint = new Point();
+        while ((line = br.readLine()) != null || (line.contains("<---Global best PointExecution--->"))) {
+            PointExecution curPointExecution = new PointExecution();
             readWhile("<Start point>");
             pointSize = line.length() - line.replace(",", "").length() + 1;
-            curPoint.startPoint = new ArrayList<>();
+            curPointExecution.startPoint = new ArrayList<>();
             line = line.substring(line.indexOf(">") + 2);
-            curPoint.startPoint = readPoint(pointSize, curPoint.startPoint);
+            curPointExecution.startPoint = readPoint(pointSize, curPointExecution.startPoint);
             readWhile("<Best result from point>");
             line = line.substring(line.indexOf(">") + 1);
-            curPoint.result = Double.parseDouble(line);
+            curPointExecution.result = Double.parseDouble(line);
             ArrayList<Double> t;
             readWhile("<1>");
             do {
                 t = new ArrayList<>();
                 line = line.substring(line.indexOf("[") + 1);
                 t = readPoint(pointSize, t);
-                curPoint.points.add(t);
+                curPointExecution.points.add(t);
             } while (((line = br.readLine()) != null) && !line.equals(""));
-            allPoints.add(curPoint);
-            if (allPoints.size() == pointSize + 1){
+            allPointExecutions.add(curPointExecution);
+            if (allPointExecutions.size() == pointSize + 1){
                 break;
             }
         }
@@ -180,7 +177,7 @@ public class Preprocessor {
     }
 
     public void clear() {
-        allPoints.clear();
+        allPointExecutions.clear();
         out = null;
         br = null;
     }
