@@ -27,6 +27,35 @@ public class Preprocessor {
         writeOut(outName);
     }
 
+    public static void bestPointGetter(String inName, String outName){
+        try {
+            readIn(inName);
+            out = new PrintWriter(outName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        double bestValue = 0;
+        ArrayList<ArrayList<Double>> bestPoints = new ArrayList<>();
+        for (Point curPoint : allPoints) {
+            if (curPoint.result == bestValue){
+                bestPoints.addAll(curPoint.points);
+            }
+            if (curPoint.result > bestValue) {
+                bestPoints.clear();
+                bestValue = curPoint.result;
+                bestPoints.addAll(curPoint.points);
+            }
+        }
+        out.println(bestValue);
+        for(ArrayList<Double> point : bestPoints){
+            for(int i = 0; i < point.size()-1; i++){
+                out.print(point.get(i) + ", ");
+            }
+            out.println(point.get(point.size()-1));
+        }
+        out.close();
+    }
+
     private static void writeOut(String outName) {
         try {
             out = new PrintWriter(outName);

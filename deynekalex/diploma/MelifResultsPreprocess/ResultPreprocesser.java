@@ -15,7 +15,7 @@ import java.util.DoubleSummaryStatistics;
 public class ResultPreprocesser {
 
     public static void main(String[] args) {
-        preprocessFolder("zmelif_stat/" + "part4/" + "zdatasets_discrete(-5,5)part4_runInfo(0.25, 500, 20)");
+        preprocessFolder("zmelif_stat/" + "part4/" + "zdatasets_discrete(-5,5)part4_runInfo(0.25, 100, 20)");
     }
 
     private static void preprocessFolder(String folderPath) {
@@ -27,7 +27,7 @@ public class ResultPreprocesser {
                 Preprocessor preprocessor = new Preprocessor();
                 System.out.println("started " + folder + "/" + fileEntry.getName());
                 String inName = folder + "/" + fileEntry.getName();
-                String outName = "zdist_" + folder + "/" + fileEntry.getName();
+                String outName = "zbestpoints_" + folder + "/" + fileEntry.getName();
                 File newFile = new File(outName);
                 if(!newFile.exists()) {
                     try {
@@ -37,7 +37,7 @@ public class ResultPreprocesser {
                         e.printStackTrace();
                     }
                 }
-                preprocessor.preprocess(inName, outName);
+                preprocessor.bestPointGetter(inName, outName);
                 preprocessor.clear();
                 System.out.println("finished " + folder + "/" + fileEntry.getName());
             }
