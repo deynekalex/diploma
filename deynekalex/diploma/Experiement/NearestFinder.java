@@ -35,7 +35,7 @@ public class NearestFinder {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                nearestNames = getNearest(metaInfo, trainNames, new StrategyKNearest(5));
+                nearestNames = getNearest(metaInfo, trainNames, new StrategyKNearest(nearestDatasetsCount));
             }
         }
         return nearestNames;
