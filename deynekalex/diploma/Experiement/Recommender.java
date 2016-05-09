@@ -48,7 +48,7 @@ public class Recommender {
         return res;
     }
 
-    private DatasetInfo readMelifStat(String fileName, Double distance) throws IOException {
+    public DatasetInfo readMelifStat(String fileName, Double distance) throws IOException {
         DatasetInfo datasetInfo = new DatasetInfo();
         datasetInfo.distance = distance;
         BufferedReader br = new BufferedReader(new FileReader(melifFolderName + "/" + fileName));

@@ -46,11 +46,11 @@ public class VotingRecommendation extends RecommendationMethod{
         }
         Collections.sort(pointsAndQuality, (o1, o2) -> {
             if (o1.getValue() < o2.getValue()){
-                return -1;
+                return 1;
             }else if (o1.getValue().equals(o2.getValue())){
                 return 0;
             }
-            return 1;
+            return -1;
         });
         ArrayList<Point> result = new ArrayList<>();
         for(int i = 0; i < pointsAndQuality.size(); i++){
