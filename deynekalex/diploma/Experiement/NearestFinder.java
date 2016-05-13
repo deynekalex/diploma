@@ -17,12 +17,12 @@ import static deynekalex.diploma.MelifResultsPreprocess.Preprocessor.line;
 public class NearestFinder {
     ArrayList<String> metaFiles;
     String metaFolderName;
-    int nearestDatasetsCount;
+    Strategy strategy;
 
-    NearestFinder(ArrayList<String> metaFiles, String metaFolderName, int nearestDatasetsCount){
+    NearestFinder(ArrayList<String> metaFiles, String metaFolderName, Strategy strategy){
         this.metaFiles = metaFiles;
         this.metaFolderName = metaFolderName;
-        this.nearestDatasetsCount = nearestDatasetsCount;
+        this.strategy = strategy;
     }
 
     public ArrayList<Pair<String, Double>> getSimillarDatasetNames(String testName, ArrayList<String> trainNames) {
@@ -35,7 +35,7 @@ public class NearestFinder {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                nearestNames = getNearest(metaInfo, trainNames, new StrategyKNearest(nearestDatasetsCount));
+                nearestNames = getNearest(metaInfo, trainNames, strategy);
             }
         }
         return nearestNames;

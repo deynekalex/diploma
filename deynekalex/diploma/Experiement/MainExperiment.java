@@ -1,5 +1,6 @@
 package deynekalex.diploma.Experiement;
 
+import deynekalex.diploma.Experiement.NearestStrategy.StrategyFixedRadius;
 import deynekalex.diploma.Experiement.NearestStrategy.StrategyKNearest;
 import deynekalex.diploma.Experiement.NearestStrategy.Strategy;
 import deynekalex.diploma.Experiement.RecommendationMethod.RecommendationMethod;
@@ -7,9 +8,7 @@ import deynekalex.diploma.Experiement.RecommendationMethod.VotingRecommendation;
 import javafx.util.Pair;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.*;
 
 import static deynekalex.diploma.MelifResultsPreprocess.Preprocessor.line;
 
@@ -111,15 +110,18 @@ public class MainExperiment {
             return;
         }
         //number of experiment launches
-        int iterations = 30;
-        double gloabalResult = 0;
+        int iterations = 10;
+        double globalResult = 0;
         //
         //Experiment settings
         //
         double testPercent = 0.2;
-        int nearestDataSetsCount = 10;
-        NearestFinder nr = new NearestFinder(metaFiles, metaFolderName, nearestDataSetsCount);
-        int recommendedPointsCount = 5;
+        int nearestDataSetsCount = 5;
+        //Strategy strategy = new StrategyKNearest(nearestDataSetsCount);
+        double radius = 1.0;
+        Strategy strategy = new StrategyFixedRadius(radius);
+        NearestFinder nr = new NearestFinder(metaFiles, metaFolderName, strategy);
+        int recommendedPointsCount = 10;
         RecommendationMethod recommendationMethod = new VotingRecommendation(recommendedPointsCount);
         Recommender rec = new Recommender(melifFolderName, metaFiles, melifFiles, recommendationMethod);
         //
@@ -133,7 +135,7 @@ public class MainExperiment {
                 all++;
                 ArrayList<Pair<String, Double>> nearestNamesAndDist = nr.getSimillarDatasetNames(testName, trainNames);
                 ArrayList<Point> recommendedPoints = rec.recommend(nearestNamesAndDist);
-                ArrayList<Point> bestPoints = new ArrayList<>();
+                Set<Point> bestPoints = new HashSet<>();
                 for (String melifFileName : melifFiles) {
                     if (melifFileName.contains(testName)) {
                         bestPoints.addAll(getMelifStat(melifFileName));
@@ -148,7 +150,7 @@ public class MainExperiment {
             }
             double result = (double) res / all;
             System.out.println("current result = " + (double) res / all);
-            gloabalResult += result;
+            globalResult += result;
             /*Point p1 = new Point();
             p1.coordinates.add(2.0);
             p1.coordinates.add(0.0);
@@ -164,7 +166,7 @@ public class MainExperiment {
             boolean b = p1.equals(p2);
             System.out.println(b);*/
         }
-        gloabalResult = gloabalResult / iterations * 100;
-        System.out.println("Result = " + (gloabalResult));
+        globalResult = globalResult / iterations * 100;
+        System.out.println("Result = " + (globalResult));
     }
 }

@@ -5,13 +5,13 @@ import javafx.util.Pair;
 import java.util.ArrayList;
 
 /**
- * Created by deynekalex on 08.05.16.
+ * Created by deynekalex on 09.05.16.
  */
-public class StrategyKNearest extends Strategy{
-    int k = 0;
+public class StrategyFixedRadius extends Strategy{
+    Double radius;
 
-    public StrategyKNearest(int k){
-        this.k = k;
+    public StrategyFixedRadius(Double radius){
+        this.radius = radius;
     }
 
     @Override
@@ -23,10 +23,15 @@ public class StrategyKNearest extends Strategy{
             if (!trainNames.contains(fileName)){
                 continue;
             }else{
-                result.add(pair);
-            }
-            if (result.size() == k){
-                break;
+                if (result.size() == 0){
+                    result.add(pair);
+                    continue;
+                }
+                if (dist <= radius){
+                    result.add(pair);
+                }else{
+                    break;
+                }
             }
         }
         return result;
