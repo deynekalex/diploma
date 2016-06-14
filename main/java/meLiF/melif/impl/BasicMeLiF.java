@@ -21,11 +21,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 
-/**
- * Core single-threaded MeLiF implementation
- *
- * @author iisaev
- */
+
 public class BasicMeLiF implements MeLiF {
 
     static PrintWriter out;

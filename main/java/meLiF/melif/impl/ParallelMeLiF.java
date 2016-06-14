@@ -19,11 +19,7 @@ import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
 
-/**
- * Implementation, that evaluates each point in separate thread
- *
- * @author iisaev
- */
+
 public class ParallelMeLiF extends BasicMeLiF {
     private final ExecutorService executorService;
 

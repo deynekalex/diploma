@@ -15,9 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-/**
- * @author iisaev
- */
+
 public class DataSetReader {
 
     protected final Logger logger = LoggerFactory.getLogger(DataSetReader.class);

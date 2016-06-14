@@ -11,9 +11,7 @@ import java.util.Random;
 import java.util.stream.IntStream;
 
 
-/**
- * @author iisaev
- */
+
 public class DataSetTransformer {
     private final Random random = new Random();
 

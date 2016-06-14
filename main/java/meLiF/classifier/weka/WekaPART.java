@@ -4,9 +4,7 @@ import weka.classifiers.AbstractClassifier;
 import weka.classifiers.rules.PART;
 
 
-/**
- * @author iisaev
- */
+
 public class WekaPART extends WekaClassifier {
 
     @Override

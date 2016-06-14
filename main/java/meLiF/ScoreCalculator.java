@@ -3,9 +3,7 @@ package meLiF;
 import java.util.List;
 
 
-/**
- * @author iisaev
- */
+
 public class ScoreCalculator {
     public double calculateF1Score(List<Integer> expectedList, List<Integer> actualList) {
         if (expectedList.size() != actualList.size()) {

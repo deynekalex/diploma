@@ -4,9 +4,7 @@ import weka.classifiers.AbstractClassifier;
 import weka.classifiers.functions.MultilayerPerceptron;
 
 
-/**
- * @author iisaev
- */
+
 public class WekaMultilayerPerceptron extends WekaClassifier {
 
     @Override

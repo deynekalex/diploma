@@ -3,9 +3,6 @@ package meLiF.classifier;
 import meLiF.classifier.weka.*;
 
 
-/**
- * @author iisaev
- */
 public enum Classifiers {
     WEKA_HOEFD(WekaHoeffdingTree.class),
     WEKA_J48(WekaJ48.class),

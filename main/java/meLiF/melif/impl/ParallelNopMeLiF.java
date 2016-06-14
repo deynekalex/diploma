@@ -13,11 +13,6 @@ import java.util.Collections;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
-/**
- * Implementation, that returns better result for each point until it reaches
- *
- * @author iisaev
- */
 public class ParallelNopMeLiF extends ParallelMeLiF {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ParallelNopMeLiF.class);

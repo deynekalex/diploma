@@ -4,9 +4,7 @@ import weka.classifiers.AbstractClassifier;
 import weka.classifiers.functions.SMO;
 
 
-/**
- * @author iisaev
- */
+
 public class WekaSVM extends WekaClassifier {
 
     @Override

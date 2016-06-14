@@ -5,15 +5,11 @@ import meLiF.DataSetReader;
 import meLiF.feature.measure.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.ifmo.ctddev.isaev.*;
 import meLiF.classifier.Classifiers;
 import meLiF.dataset.DataSet;
 import meLiF.result.Point;
 
 
-/**
- * @author iisaev
- */
 public class MeLiFComparison extends Comparison {
     private static final Logger LOGGER = LoggerFactory.getLogger(MeLiFComparison.class);
 

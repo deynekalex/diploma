@@ -10,9 +10,7 @@ import java.util.List;
 import java.util.Random;
 
 
-/**
- * @author iisaev
- */
+
 public class SequentalSplitter extends AbstractDatasetSplitter {
     private final Random random = new Random();
 

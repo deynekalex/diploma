@@ -7,11 +7,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 
-/**
- * todo may be faster
- *
- * @author iisaev
- */
+
 public class SymmetricUncertainty extends CorrelationBasedMeasure {
     private static final double LOG_2 = Math.log(2);
 

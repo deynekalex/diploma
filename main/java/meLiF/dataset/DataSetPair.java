@@ -1,8 +1,6 @@
 package meLiF.dataset;
 
-/**
- * @author iisaev
- */
+
 public class DataSetPair {
     private DataSet trainSet;
 

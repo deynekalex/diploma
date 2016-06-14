@@ -1,8 +1,6 @@
 package meLiF.executable;
 
-/**
- * @author iisaev
- */
+
 public class Comparison {
 
     protected static double getSpeedImprovementPercent(long prevSeconds, long curSeconds) {

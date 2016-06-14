@@ -4,9 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 
-/**
- * @author iisaev
- */
+
 public class Feature {
     private final String name;
 

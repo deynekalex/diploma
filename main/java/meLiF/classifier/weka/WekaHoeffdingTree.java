@@ -4,9 +4,7 @@ import weka.classifiers.AbstractClassifier;
 import weka.classifiers.trees.HoeffdingTree;
 
 
-/**
- * @author iisaev
- */
+
 public class WekaHoeffdingTree extends WekaClassifier {
 
     @Override

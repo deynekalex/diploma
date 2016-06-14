@@ -3,9 +3,7 @@ package meLiF.result;
 import java.util.function.Consumer;
 
 
-/**
- * @author iisaev
- */
+
 public class OptimizationPoint extends Point {
 
     private final Point parent;

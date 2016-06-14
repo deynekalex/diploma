@@ -8,9 +8,6 @@ import meLiF.dataset.DataSet;
 import meLiF.result.Point;
 
 
-/**
- * @author iisaev
- */
 public class ClassifiersComparison extends Comparison {
     private static final Logger LOGGER = LoggerFactory.getLogger(ClassifiersComparison.class);
 

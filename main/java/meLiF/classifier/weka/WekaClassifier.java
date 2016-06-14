@@ -9,9 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-/**
- * @author iisaev
- */
+
 public abstract class WekaClassifier implements Classifier {
 
     private AbstractClassifier classifier;

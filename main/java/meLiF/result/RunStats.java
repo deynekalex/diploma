@@ -13,9 +13,7 @@ import java.util.Comparator;
 import java.util.List;
 
 
-/**
- * @author iisaev
- */
+
 public class RunStats implements Comparable<RunStats> {
     private RelevanceMeasure[] measures;
 

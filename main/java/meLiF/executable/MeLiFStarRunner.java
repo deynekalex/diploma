@@ -7,9 +7,7 @@ import org.slf4j.LoggerFactory;
 import meLiF.DataSetReader;
 
 
-/**
- * @author iisaev
- */
+
 public class MeLiFStarRunner {
     private static final Logger LOGGER = LoggerFactory.getLogger(MeLiFStarRunner.class);
 

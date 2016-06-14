@@ -4,9 +4,7 @@ import weka.classifiers.AbstractClassifier;
 import weka.classifiers.trees.RandomForest;
 
 
-/**
- * @author iisaev
- */
+
 public class WekaRandomForest extends WekaClassifier {
 
     @Override

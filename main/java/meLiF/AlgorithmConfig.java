@@ -6,9 +6,7 @@ import meLiF.splitter.DatasetSplitter;
 import filtering.DatasetFilter;
 
 
-/**
- * @author iisaev
- */
+
 public class AlgorithmConfig {
     private final double delta;
 

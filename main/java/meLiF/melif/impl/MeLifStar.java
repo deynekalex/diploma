@@ -3,7 +3,6 @@ package meLiF.melif.impl;
 import meLiF.AlgorithmConfig;
 import meLiF.dataset.DataSet;
 import meLiF.result.RunStats;
-import ru.ifmo.ctddev.isaev.*;
 import meLiF.result.OptimizationPoint;
 import meLiF.result.Point;
 import meLiF.result.SelectionResult;
@@ -19,11 +18,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 
-/**
- * Very slow implementation that traverses all points recursively
- *
- * @author iisaev
- */
+
 public class MeLifStar extends ParallelMeLiF {
 
     public MeLifStar(AlgorithmConfig config, DataSet dataSet, int threads) {

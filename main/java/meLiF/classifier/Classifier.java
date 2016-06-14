@@ -5,9 +5,7 @@ import meLiF.DataSetTransformer;
 import java.util.List;
 
 
-/**
- * @author iisaev
- */
+
 public interface Classifier {
     DataSetTransformer datasetTransformer = new DataSetTransformer();
 

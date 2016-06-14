@@ -8,9 +8,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 
-/**
- * @author iisaev
- */
+
 public class VDM extends CorrelationBasedMeasure {
     @Override
     public double evaluate(Feature feature, List<Integer> classes) {

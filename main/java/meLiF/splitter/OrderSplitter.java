@@ -10,9 +10,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 
-/**
- * @author iisaev
- */
+
 public class OrderSplitter extends SequentalSplitter {
     private final Random random = new Random();
 

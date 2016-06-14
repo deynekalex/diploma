@@ -1,8 +1,6 @@
 package meLiF.dataset;
 
-/**
- * @author iisaev
- */
+
 public abstract class DataSet {
     private final String name;
 

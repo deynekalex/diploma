@@ -11,9 +11,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
-/**
- * @author iisaev
- */
 public class MeasureEvaluator {
     public Stream<EvaluatedFeature> evaluateFeatureMeasures(Stream<Feature> features,
                                                             List<Integer> classes,

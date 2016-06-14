@@ -10,9 +10,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 
-/**
- * @author iisaev
- */
 public class RandomSplitter implements DatasetSplitter {
     private final Random random = new Random();
 

@@ -13,9 +13,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 
-/**
- * @author iisaev
- */
+
 public class MultipleThreadedVsSequentialComparison extends Comparison {
     private static final Logger LOGGER = LoggerFactory.getLogger(MultipleThreadedVsSequentialComparison.class);
 

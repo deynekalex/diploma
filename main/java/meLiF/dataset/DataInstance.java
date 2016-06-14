@@ -3,9 +3,7 @@ package meLiF.dataset;
 import java.util.List;
 
 
-/**
- * @author iisaev
- */
+
 public class DataInstance {
     private final Integer clazz;
 

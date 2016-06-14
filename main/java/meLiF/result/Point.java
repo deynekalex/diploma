@@ -2,9 +2,7 @@ package meLiF.result;
 
 import java.util.ArrayList;
 
-/**
- * @author iisaev
- */
+
 public class Point implements Comparable<Point> {
     private final double[] coordinates;
 

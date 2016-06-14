@@ -7,9 +7,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 
-/**
- * @author iisaev
- */
 public class FeatureDataSet extends DataSet {
     private final List<Feature> features;
 

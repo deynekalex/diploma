@@ -4,9 +4,7 @@ import weka.classifiers.AbstractClassifier;
 import weka.classifiers.trees.J48;
 
 
-/**
- * @author iisaev
- */
+
 public class WekaJ48 extends WekaClassifier {
 
     @Override

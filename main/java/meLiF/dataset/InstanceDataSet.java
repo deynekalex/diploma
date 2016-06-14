@@ -7,9 +7,6 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 
-/**
- * @author iisaev
- */
 public class InstanceDataSet extends DataSet {
     private final List<DataInstance> instances;
 

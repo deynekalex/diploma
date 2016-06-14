@@ -8,9 +8,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 
-/**
- * @author iisaev
- */
+
 public abstract class CorrelationBasedMeasure implements RelevanceMeasure {
     protected class Distribution {
         private int sum;

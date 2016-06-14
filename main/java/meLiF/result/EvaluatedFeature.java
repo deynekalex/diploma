@@ -3,9 +3,7 @@ package meLiF.result;
 import meLiF.dataset.Feature;
 
 
-/**
- * @author iisaev
- */
+
 public class EvaluatedFeature extends Feature {
 
     private double measure;

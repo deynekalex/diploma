@@ -4,9 +4,7 @@ import weka.classifiers.AbstractClassifier;
 import weka.classifiers.functions.LinearRegression;
 
 
-/**
- * @author iisaev
- */
+
 @Deprecated
 public class WekaLinearRegression extends WekaClassifier {
 

@@ -23,9 +23,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 
-/**
- * @author iisaev
- */
+
 public class ThreadedVsSequentialComparison extends Comparison {
     private static final Logger LOGGER = LoggerFactory.getLogger(ThreadedVsSequentialComparison.class);
 

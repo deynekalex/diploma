@@ -21,9 +21,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 
-/**
- * @author iisaev
- */
+
 public class ParallelRunner {
     private static final Logger LOGGER = LoggerFactory.getLogger(ParallelRunner.class);
 

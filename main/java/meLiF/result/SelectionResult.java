@@ -6,9 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 
-/**
- * @author iisaev
- */
+
 public class SelectionResult implements Comparable<SelectionResult> {
     private final List<Feature> selectedFeatures;
 
