@@ -18,7 +18,7 @@ public class FilterCreator{
             e.printStackTrace();
         }
         try {
-            filter.setOptions(opt);
+            filtering.setOptions(opt);
         } catch (Exception e) {
             e.printStackTrace();
         }*/

@@ -28,7 +28,6 @@ public class MetaLinearCorrelation extends Metafeature {
         int col = 0;
         int last = 1000000;
         //
-
         for (int i = 1; i < data.numAttributes(); i++){
             for (int j = i + 1; j < data.numAttributes(); j++){
                 col++;
@@ -36,7 +35,19 @@ public class MetaLinearCorrelation extends Metafeature {
                     last += 1000000;
                     System.out.println(col);
                 }
-                sum += correlation(data.attributeToDoubleArray(i), data.attributeToDoubleArray(j), data.numInstances());
+                double[] mas1 = data.attributeToDoubleArray(i);
+                double[] mas2 = data.attributeToDoubleArray(i);
+                for(int z = 0; z < mas1.length; z++){
+                    if (Double.isNaN(mas1[z])){
+                        mas1[z] = 0;
+                    }
+                }
+                for(int z = 0; z < mas2.length; z++){
+                    if (Double.isNaN(mas2[z])){
+                        mas2[z] = 0;
+                    }
+                }
+                sum += correlation(mas1, mas2, data.numInstances());
             }
         }
         avgMetadata = sum/col;

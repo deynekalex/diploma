@@ -2,9 +2,15 @@ package deynekalex.diploma;
 
 import weka.attributeSelection.*;
 import weka.classifiers.Evaluation;
+import weka.classifiers.functions.Logistic;
+import weka.classifiers.functions.MultilayerPerceptron;
+import weka.classifiers.functions.SMO;
+import weka.classifiers.lazy.IBk;
+import weka.classifiers.rules.PART;
+import weka.classifiers.trees.J48;
+import weka.classifiers.trees.RandomForest;
 import weka.core.Instances;
 import weka.core.converters.CSVLoader;
-import weka.core.converters.ConverterUtils;
 import weka.filters.Filter;
 import weka.filters.supervised.attribute.AttributeSelection;
 
@@ -20,22 +26,67 @@ public class Classificator {
         Instances data = null;
         Evaluation eval = null;
         try {
-            AttributeSelection filter = new AttributeSelection();
+            WrapperSubsetEval wrapperSubsetEval = new WrapperSubsetEval();
             GreedyStepwise search = new GreedyStepwise();
             search.setSearchBackwards(true);
-            filter.setEvaluator(new CfsSubsetEval());
-            filter.setSearch(search);
-            loader.setSource(new File("zdatasets_csv/data1_train(123,54675)_norm_ova(123,54675).csv"));
+            /*filtering.setEvaluator(new CfsSubsetEval());
+            filtering.setSearch(search);*/
+            loader.setSource(new File("metaFileDataset.csv"));
             data = loader.getDataSet();
             data.setClassIndex(0);
-            filter.setInputFormat(data);
-            Instances newData1 = Filter.useFilter(data,filter);
-            /*eval = new Evaluation(data);
-            eval.crossValidateModel(new NaiveBayes(),data,5,new Random(1));
-            System.out.println(eval.toSummaryString("\nResults\n======\n", false));
+            //filtering.setInputFormat(data);
+            //Instances newData1 = Filter.useFilter(data,filtering);
             eval = new Evaluation(data);
-            eval.crossValidateModel(new SimpleLogistic(),data,5,new Random(1));
-            System.out.println(eval.toSummaryString("\nResults\n======\n", false));*/
+            eval.crossValidateModel(new J48(),data,5,new Random(1));
+            System.out.println(eval.toSummaryString("\nResults\n======\n", false));
+            System.out.println(eval.toClassDetailsString());
+            ///////////////////////////////////////////////////
+            /*eval = new Evaluation(data);
+            eval.crossValidateModel(new LinearRegression(),data,246,new Random(1));
+            System.out.println(eval.toSummaryString("\nResults\n======\n", false));
+            System.out.println(eval.toClassDetailsString());*/
+            //////////////////////////////////////////////////
+            System.out.println("Logistic");
+            eval = new Evaluation(data);
+            eval.crossValidateModel(new Logistic(),data,5,new Random(1));
+            System.out.println(eval.toSummaryString("\nResults\n======\n", false));
+            System.out.println(eval.toClassDetailsString());
+            //////////////////////////////////////////////////
+            System.out.println("SVM");
+            eval = new Evaluation(data);
+            eval.crossValidateModel(new SMO(),data,5,new Random(1));
+            System.out.println(eval.toSummaryString("\nResults\n======\n", false));
+            System.out.println(eval.toClassDetailsString());
+            //////////////////////////////////////////////////
+            System.out.println("J48");
+            eval = new Evaluation(data);
+            eval.crossValidateModel(new J48(), data, 5, new Random(1));
+            System.out.println(eval.toSummaryString("\nResults\n======\n", false));
+            System.out.println(eval.toClassDetailsString());
+            //////////////////////////////////////////////////
+            System.out.println("IBk");
+            eval = new Evaluation(data);
+            eval.crossValidateModel(new IBk(), data, 5, new Random(1));
+            System.out.println(eval.toSummaryString("\nResults\n======\n", false));
+            System.out.println(eval.toClassDetailsString());
+            //////////////////////////////////////////////////
+            System.out.println("MultilayerPerceptron");
+            eval = new Evaluation(data);
+            eval.crossValidateModel(new MultilayerPerceptron(), data, 5, new Random(1));
+            System.out.println(eval.toSummaryString("\nResults\n======\n", false));
+            System.out.println(eval.toClassDetailsString());
+            //////////////////////////////////////////////////*/
+            System.out.println("Part");
+            eval = new Evaluation(data);
+            eval.crossValidateModel(new PART(), data, 5, new Random(1));
+            System.out.println(eval.toSummaryString("\nResults\n======\n", false));
+            System.out.println(eval.toClassDetailsString());
+            //////////////////////////////////////////////////
+            System.out.println("Random Forest");
+            eval = new Evaluation(data);
+            eval.crossValidateModel(new RandomForest(), data, 5, new Random(1));
+            System.out.println(eval.toSummaryString("\nResults\n======\n", false));
+            System.out.println(eval.toClassDetailsString());
         } catch (IOException e) {
             e.printStackTrace();
         } catch (Exception e) {

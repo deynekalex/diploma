@@ -25,6 +25,11 @@ public class MetaKurtosis extends Metafeature{
         Map<Object, Double> KURT_X = new HashMap<>();
         for (int i = 1; i < data.numAttributes(); i++){
             double[] mas = data.attributeToDoubleArray(i);
+            for(int j = 0; j < mas.length; j++){
+                if (Double.isNaN(mas[j])){
+                    mas[j] = 0;
+                }
+            }
             FourthMoment m4 = new FourthMoment();
             Kurtosis k = new Kurtosis(m4);
             for(int j = 0; j < mas.length; j++){

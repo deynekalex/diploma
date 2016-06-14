@@ -46,7 +46,7 @@ public class MetaExtracter {
             return false;
         }
         try {
-            out = new PrintWriter(Utils.getResultFileName(curfile,"_metainfo", ".meta"));
+            out = new PrintWriter(Utils.getResultFileName(curfile,"_metainfo2", ".meta"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

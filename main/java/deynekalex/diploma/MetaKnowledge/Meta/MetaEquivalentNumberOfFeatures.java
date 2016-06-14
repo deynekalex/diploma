@@ -31,6 +31,11 @@ public class MetaEquivalentNumberOfFeatures extends Metafeature{
         double[] attrClass = data.attributeToDoubleArray(0);
         for(int i = 1; i < data.numAttributes(); i++){
             mas = data.attributeToDoubleArray(i);
+            for(int j = 0; j < mas.length; j++){
+                if (Double.isNaN(mas[j])){
+                    mas[j] = 0;
+                }
+            }
             metadata.put(i,calculateMutualInformation(attrClass,mas));
         }
         calcAverageMetaData();

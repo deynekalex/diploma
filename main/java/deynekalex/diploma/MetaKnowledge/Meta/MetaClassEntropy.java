@@ -22,6 +22,11 @@ public class MetaClassEntropy extends Metafeature{
         if (this.data == null)
             this.load();
         double[] mas = data.attributeToDoubleArray(0);
+        for(int j = 0; j < mas.length; j++){
+            if (Double.isNaN(mas[j])){
+                mas[j] = 0;
+            }
+        }
         avgMetadata = entropy(mas);
         return avgMetadata;
     }

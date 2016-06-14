@@ -29,6 +29,11 @@ public class MetaNoiseSignalRatio extends Metafeature{
         //from one because data.attribute(0) = class
         for(int i = 1; i < data.numAttributes(); i++){
             double[] mas = data.attributeToDoubleArray(i);
+            for(int z = 0; z < mas.length; z++){
+                if (Double.isNaN(mas[z])){
+                    mas[z] = 0;
+                }
+            }
             metadata.put(i,entropy(mas));
         }
         calcAverageMetaData();
@@ -37,6 +42,11 @@ public class MetaNoiseSignalRatio extends Metafeature{
         double[] attrClass = data.attributeToDoubleArray(0);
         for(int i = 1; i < data.numAttributes(); i++){
             double[] mas = data.attributeToDoubleArray(i);
+            for(int z = 0; z < mas.length; z++){
+                if (Double.isNaN(mas[z])){
+                    mas[z] = 0;
+                }
+            }
             metadata.put(i,calculateMutualInformation(attrClass,mas));
         }
         calcAverageMetaData();

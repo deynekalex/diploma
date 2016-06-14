@@ -25,6 +25,11 @@ public class MetaSkewness extends Metafeature{
         Map<Object, Double> SKEW_X = new HashMap<>();
         for (int i = 1; i < data.numAttributes(); i++){
             double[] mas = data.attributeToDoubleArray(i);
+            for(int z = 0; z < mas.length; z++){
+                if (Double.isNaN(mas[z])){
+                    mas[z] = 0;
+                }
+            }
             FourthMoment m4 = new FourthMoment();
             Skewness s = new Skewness(m4);
             for(int j = 0; j < mas.length; j++){

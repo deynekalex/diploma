@@ -27,6 +27,11 @@ public class MetaAttributesEntropy extends Metafeature {
         //from one because data.attribute(0) = class
         for(int i = 1; i < data.numAttributes(); i++){
             double[] mas = data.attributeToDoubleArray(i);
+            for(int j = 0; j < mas.length; j++){
+                if (Double.isNaN(mas[j])){
+                    mas[j] = 0;
+                }
+            }
             metadata.put(i,entropy(mas));
         }
         calcAverageMetaData();

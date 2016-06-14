@@ -26,12 +26,12 @@ public class MetaDistanceCalculator {
         //найти все пары расстояний до датасетов и отсортировать по возрастанию
         TreeMap<Double, String> dist = new TreeMap<>();
         for (int i = 0; i < files.size(); i++) {
-            dist.put(calcDistance(metaDataIn.get(curFile), metaDataIn.get(files.get(i))),files.get(i));
+            dist.put(calcDistance(metaDataIn.get(curFile), metaDataIn.get(files.get(i))), files.get(i));
         }
         Set set = dist.entrySet();
         Iterator iterator = set.iterator();
-        while(iterator.hasNext()) {
-            Map.Entry mentry = (Map.Entry)iterator.next();
+        while (iterator.hasNext()) {
+            Map.Entry mentry = (Map.Entry) iterator.next();
             //System.out.print("key is: "+ mentry.getKey() + " & Value is: ");
             out.print(mentry.getKey() + " - ");
             out.println(mentry.getValue());
@@ -47,10 +47,10 @@ public class MetaDistanceCalculator {
             e.printStackTrace();
         }
         double sum = 0;
-        for (int i = 0; i < first.size(); i++){
-            if (Double.isNaN(first.get(i)) || Double.isNaN(second.get(i))){
+        for (int i = 0; i < first.size(); i++) {
+            if (Double.isNaN(first.get(i)) || Double.isNaN(second.get(i))) {
                 sum += 0.5;
-            }else {
+            } else {
                 sum += Math.abs(first.get(i) - second.get(i));
             }
         }
@@ -79,4 +79,84 @@ public class MetaDistanceCalculator {
         }
     }
 
+    public void writeMetaFilesToCsv(String resultPath) throws FileNotFoundException {
+        PrintWriter out = new PrintWriter(resultPath);
+        for (String curFile : files) {
+            loadMetaInfo(curFile);
+        }
+        Collections.sort(files);
+        for (int i = 0; i < metaDataIn.get(files.get(0)).size(); i++) {
+            if (i == 0) {
+                for (String curFile : files) {
+                    out.print(curFile + ";");
+                }
+                out.println();
+            }
+            for (String curFile : files) {
+                if (curFile.contains("GDS5037_mul3_norm_1_ova")) {
+                    continue;//bad metainfo
+                }
+                out.print(metaDataIn.get(curFile).get(i) + ";");
+            }
+            out.println();
+        }
+        out.close();
+    }
+
+    private void printMeanDist(String curFile, PrintWriter out) {
+        TreeMap<Double, String> dist = new TreeMap<>();
+        for (int i = 0; i < files.size(); i++) {
+            dist.put(calcDistance(metaDataIn.get(curFile), metaDataIn.get(files.get(i))), files.get(i));
+        }
+        Set set = dist.entrySet();
+        Iterator iterator = set.iterator();
+        iterator.next();
+        double sum = 0;
+        int i = 1;
+        while (iterator.hasNext()) {
+            if (i >= 4) {
+                break;
+            }
+            Map.Entry<Double, String> mentry = (Map.Entry) iterator.next();
+            //System.out.print("key is: "+ mentry.getKey() + " & Value is: ");
+            sum += 1 / mentry.getKey();
+            i++;
+        }
+        out.print(sum + ";");
+    }
+
+    private void printNearestDist(String curFile, PrintWriter out){
+        TreeMap<Double, String> dist = new TreeMap<>();
+        for (int i = 0; i < files.size(); i++) {
+            dist.put(calcDistance(metaDataIn.get(curFile), metaDataIn.get(files.get(i))), files.get(i));
+        }
+        Set set = dist.entrySet();
+        Iterator iterator = set.iterator();
+        iterator.next();
+        if (iterator.hasNext()) {
+            Map.Entry<Double, String> mentry = (Map.Entry) iterator.next();
+            out.print(mentry.getKey() + ";");
+        }
+    }
+
+    public void writeMeanDistToFile(String resultPath) throws FileNotFoundException {
+        PrintWriter out = new PrintWriter(resultPath);
+        for (String curFile : files) {
+            loadMetaInfo(curFile);
+        }
+        Collections.sort(files);
+        for (String curFile : files) {
+            out.print(curFile + ";");
+        }
+        out.println();
+        for (String curFile : files) {
+            if (curFile.contains("GDS5037_mul3_norm_1_ova")) {
+                continue;//bad metainfo
+            }
+            //printMeanDist(curFile, out);
+            printNearestDist(curFile, out);
+        }
+        out.println();
+        out.close();
+    }
 }
